@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - ページが見つかりません</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a23 0%, #1a1a3b 100%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 背景のキラキラ星 */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* 流れ星 */
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: shoot 2s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(200px, 200px); opacity: 0; }
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #ff4d4d;
+            text-shadow: 0 0 15px rgba(255, 77, 77, 0.7);
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-2deg); }
+            75% { transform: translateX(5px) rotate(2deg); }
+        }
+
+        .message {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #e0e0e0;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .sub-message {
+            font-size: 18px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #ff4d4d;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+        }
+
+        .btn:hover {
+            background-color: #e03e3e;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.8);
+        }
+
+        .astronaut {
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            width: 120px;
+            animation: float 5s ease-in-out infinite, rotate 10s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            .error-code {
+                font-size: 80px;
+            }
+
+            .message {
+                font-size: 20px;
+            }
+
+            .sub-message {
+                font-size: 16px;
+            }
+
+            .astronaut {
+                width: 80px;
+                top: 10%;
+                left: 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1 class="message">うわっ！ページがブラックホールに吸い込まれた！</h1>
+        <p class="sub-message">宇宙の果てまで探したけど見つからないよ... ホームにワープする？🚀</p>
+        <a href="/" class="btn">ホームに帰還</a>
+    </div>
+    <img src="https://via.placeholder.com/120?text=🚀" alt="Astronaut" class="astronaut">
+
+    <script>
+        // キラキラ星をランダムに生成
+        const starsContainer = document.querySelector('.stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            starsContainer.appendChild(star);
+        }
+
+        // 流れ星をランダムに生成
+        for (let i = 0; i < 3; i++) {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.top = `${Math.random() * 30}%`;
+            shootingStar.style.left = `${Math.random() * 50}%`;
+            shootingStar.style.animationDelay = `${Math.random() * 5}s`;
+            starsContainer.appendChild(shootingStar);
+        }
+    </script>
+</body>
+</html>
